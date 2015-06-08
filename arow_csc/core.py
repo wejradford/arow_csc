@@ -371,7 +371,8 @@ class AROW(object):
             print "testing on " + str(len(testingInstances)) + " instances"
             # Test on the dev for the weight vector produced in each round
             devCost = classifier.batchPredict(testingInstances)
-            print "Dev cost:" + str(devCost) + " avg cost per instance " + str(devCost/float(len(testingInstances)))
+            cost_per_instance = devCost / float(len(testingInstances)) if testingInstances else None
+            print "Dev cost: {} avg cost per instance: {}".format(devCost, cost_per_instance)
 
             if devCost < lowestCost:
                 bestParam = param
